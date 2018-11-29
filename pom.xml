@@ -8,16 +8,59 @@
 	<packaging>war</packaging>
 	<name>BackbaseTechnicalTest</name>
 	<description>
-  		The goal of the technical test is to create a Java web application based on the standard servlet spec.
-	    The application should provide a RESTful API that retrieve transactions from OpenBank sandbox and transforms the data using a provided mapping 
-  </description>
+        The goal of the technical test is to create a Java web application based on the standard servlet spec.
+        The application should provide a RESTful API that retrieve transactions from OpenBank sandbox and transforms the
+        data using a provided mapping
+    </description>
+
+	<properties>
+		<spring.version>4.2.3.RELEASE</spring.version>
+	</properties>
+
 	<dependencies>
 		<dependency>
-		    <groupId>javax.servlet</groupId>
-		    <artifactId>javax.servlet-api</artifactId>
-		    <version>3.0.1</version>
-		    <scope>provided</scope>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>3.1.0</version>
+			<scope>provided</scope>
 		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-web</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.camel</groupId>
+			<artifactId>camel-core</artifactId>
+			<version>2.22.2</version>
+
+		</dependency>
+		<dependency>
+			<groupId>org.apache.camel</groupId>
+			<artifactId>camel-spring</artifactId>
+			<version>2.22.2</version>
+		</dependency>
+	        <dependency>
+            <groupId>org.apache.camel</groupId>
+            <artifactId>camel-spring-javaconfig</artifactId>
+            <version>2.22.2</version>
+        </dependency>	
+
+<dependency>
+    <groupId>commons-logging</groupId>
+    <artifactId>commons-logging</artifactId>
+    <version>1.1.1</version>
+</dependency>
+
+
 	</dependencies>
 	<build>
 		<plugins>
@@ -28,8 +71,6 @@
 					<target>1.8</target>
 				</configuration>
 			</plugin>
-
-
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-war-plugin</artifactId>
@@ -38,7 +79,6 @@
 					<failOnMissingWebXml>false</failOnMissingWebXml>
 				</configuration>
 			</plugin>
-
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-dependency-plugin</artifactId>
@@ -56,6 +96,14 @@
 						</configuration>
 					</execution>
 				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.tomcat.maven</groupId>
+				<artifactId>tomcat7-maven-plugin</artifactId>
+				<version>2.2</version>
+				<configuration>
+					<path>/</path>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
